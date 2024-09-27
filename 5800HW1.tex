@@ -1,0 +1,265 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{array}
+
+\begin{document}
+
+\section*{5800 HW1 Xinyan Liu}
+
+\section*{Book Exercises}
+
+\begin{itemize}
+    \item \textbf{Section 1.1:} Exercises 4, 5
+\section*{1.1-4}
+
+Consider a delivery company with a central depot. Each day, it loads up delivery trucks at the depot and sends them around to deliver goods to several addresses. At the end of the day, each truck must end up back at the depot so that it is ready to be loaded for the next day. To reduce costs, the company wants to select an order of delivery stops that yields the lowest overall distance traveled by each truck.
+
+\subsection*{Similarity between Shortest-Path and Traveling Salesperson Problems}
+
+Both the shortest-path problem and the traveling salesperson problem (TSP) involve finding an optimal path through a set of locations:
+
+\begin{itemize}
+    \item Both problems aim to find the shortest distance traveled. In the shortest-path problem, the goal is to find the shortest path between two specific points (nodes) in a graph, while in the TSP, the goal is to find the shortest possible route that visits every point (node) exactly once and returns to the starting point.
+    \item Both problems can be represented as graphs, where the nodes represent locations (such as delivery stops) and the edges represent the traveling paths between them with associated weights (distances or costs).
+\end{itemize}
+
+\subsection*{Differences between Shortest-Path and Traveling Salesperson Problems}
+\begin{itemize}
+    \item The shortest-path problem focuses on finding the minimum distance between two specific nodes, the TSP focuses on finding the shortest possible route that visits every node exactly once and returns to the starting point.
+    \item The shortest-path problem can be solved in polynomial time using algorithms such as Dijkstra's or Bellman-Ford, while the TSP is NP-complete, meaning that no known polynomial-time algorithm can solve all instances of the problem.
+
+\section*{1.1-5}
+
+Suggest a real-world problem in which only the best solution will do. Then come up with one in which "approximately" the best solution is good enough.
+
+\textbf{1. Problem where only the best solution will do:}
+
+A \emph{password} problem requires the exact solution. To open a secure safe, you must enter the precise combination of numbers. Any deviation from the correct sequence will fail to unlock the safe.
+
+\textbf{2. Problem where approximately the best solution is good enough:}
+
+In \emph{event planning}, finding a seating arrangement that satisfies most guest preferences is often good enough, even if it's not perfect.
+
+\end{itemize}
+
+    \item \textbf{Section 1.2:} Exercises 2, 3
+\section*{1.2-2}
+Suppose that for inputs of size \(n\), insertion sort runs in \(n^2\) steps and merge sort runs in \(n \log n\) steps. For what values of \(n\) does insertion sort beat merge sort?
+
+\section*{Answer}
+
+Insertion sort will beat merge sort for smaller values of \(n\) where the quadratic term \(n^2\) is less than or comparable to the logarithmic term \(n \log n\). 
+
+To find the crossover point, we compare the two expressions:
+
+\[
+8n^2 < 64n \log n.
+\]
+
+Simplifying this inequality:
+
+\[
+n < \log n.
+\]
+
+In practice, due to the smaller constant factors and lower overhead, insertion sort tends to outperform merge sort for small input sizes. Empirical studies suggest that this occurs for values of \(n\) up to around 30 to 40. The exact crossover point can vary depending on factors like hardware, implementation details, and specific environments.
+
+Therefore, for smaller inputs, particularly for \(n \leq 30\) or so, insertion sort is likely to beat merge sort.
+
+\section*{References}
+
+\begin{enumerate}
+    \item Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2009). \textit{Introduction to Algorithms} (3rd ed.). MIT Press.
+    \item Python Documentation on Timsort: \url{https://docs.python.org/3/howto/sorting.html}
+    \item Bentley, J., & McIlroy, M. D. (1993). \textit{Engineering a Sort Function}. Software: Practice and Experience, 23(11), 1249-1265.
+    \item Sedgewick, R., & Wayne, K. (2011). \textit{Algorithms} (4th ed.). Addison-Wesley.
+\end{enumerate}
+
+\section*{1.2-3}
+What is the smallest value of \(n\) such that an algorithm whose running time is \(100n^2\) runs faster than an algorithm whose running time is \(2^n\) on the same machine?
+
+\section*{Answer}
+
+To find the smallest value of \(n\) such that:
+
+\[
+100n^2 < 2^n,
+\]
+
+We can solve this inequality by testing small values of \(n\) to find the smallest \(n\) where the inequality holds true:
+
+\begin{align*}
+n = 1, & \quad 100(1)^2 = 100, \quad 2^1 = 2 \quad (\text{not true}) \\
+n = 2, & \quad 100(2)^2 = 400, \quad 2^2 = 4 \quad (\text{not true}) \\
+n = 5, & \quad 100(5)^2 = 2500, \quad 2^5 = 32 \quad (\text{not true}) \\
+n = 10, & \quad 100(10)^2 = 10000, \quad 2^{10} = 1024 \quad (\text{not true}) \\
+n = 15, & \quad 100(15)^2 = 22500, \quad 2^{15} = 32768 \quad (\text{true}) \\
+\end{align*}
+
+At \(n = 15\), we find that \(100n^2 = 22500\) and \(2^n = 32768\), so the inequality \(100n^2 < 2^n\) holds true. Thus, the smallest value of \(n\) such that an algorithm whose running time is \(100n^2\) runs faster than an algorithm whose running time is \(2^n\) is:
+\[
+\boxed{n = 15.}
+\]
+
+    \item \textbf{Chapter 1:} Exercises 1-1
+\section*{1-1 Comparison of Running Times}
+
+For each function \( f(n) \) and time \( t \) in the following table, determine the largest size \( n \) of a problem that can be solved in time \( t \), assuming that the algorithm to solve the problem takes \( f(n) \) microseconds.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    & \textbf{1 second} & \textbf{1 minute} & \textbf{1 hour} & \textbf{1 day} & \textbf{1 month} & \textbf{1 year} & \textbf{1 century} \\
+    \hline
+    \(\lg n\)       & \(10^6\) & \(10^{8}\) & \(10^{10}\) & \(10^{11}\) & \(10^{12}\) & \(10^{13}\) & \(10^{15}\) \\
+    \hline
+    \(\sqrt{n}\)    & \(10^{12}\) & \(10^{14}\) & \(10^{16}\) & \(10^{18}\) & \(10^{20}\) & \(10^{22}\) & \(10^{24}\) \\
+    \hline
+    \(n\)           & \(10^6\) & \(6 \times 10^7\) & \(3.6 \times 10^9\) & \(8.6 \times 10^{10}\) & \(2.6 \times 10^{12}\) & \(3.1 \times 10^{13}\) & \(3.1 \times 10^{15}\) \\
+    \hline
+    \(n \lg n\)     & \(10^5\) & \(10^7\) & \(10^8\) & \(10^9\) & \(10^{10}\) & \(10^{11}\) & \(10^{13}\) \\
+    \hline
+    \(n^2\)         & \(10^3\) & \(8 \times 10^3\) & \(6 \times 10^4\) & \(1.4 \times 10^5\) & \(5 \times 10^5\) & \(1 \times 10^6\) & \(1 \times 10^7\) \\
+    \hline
+    \(n^3\)         & \(100\) & \(400\) & \(1500\) & \(3000\) & \(7000\) & \(15000\) & \(45000\) \\
+    \hline
+    \(2^n\)         & \(20\) & \(25\) & \(30\) & \(35\) & \(40\) & \(45\) & \(50\) \\
+    \hline
+    \(n!\)          & \(10\) & \(12\) & \(15\) & \(16\) & \(17\) & \(18\) & \(20\) \\
+    \hline
+\end{tabular}
+\end{center}
+
+
+ \item \textbf{Problem:} Let \( x \in \mathbb{Z}^+ \) and define \( n \in \mathbb{Z}^+ \) as:
+
+\[
+n = \min \{ m \in \mathbb{Z}^+ \mid x < 2^m \}.
+\]
+
+In words, the value \( n \) is defined to be the smallest positive integer such that \( x < 2^n \). For example, if \( x = 13 \), then \( n = 4 \). 
+
+\textbf{Problem A:}Demonstrate (i.e., prove) that:
+
+\[
+n = \lfloor \log_2 x \rfloor + 1,
+\]
+
+where \( \log_2 x \) is the base-2 logarithm of \( x \) and \( \lfloor \log_2 x \rfloor \) is the floor of \( \log_2 x \).
+
+\textbf{Problem B:} Demonstrate that the binary representation of \( x \in \mathbb{Z}^+ \) requires at least \( n \) bits.
+
+\textbf{Problem C:} Describe in pseudocode an iterative algorithm for producing the binary representation of \( x \in \mathbb{Z}^+ \).
+
+\textbf{Problem D:} Implement in C++ the algorithm described in Problem C.
+
+\textbf{Problem E:} Repeat Problems C and D but with a recursive algorithm.
+
+\subsection*{Solutions}
+
+\subsubsection*{Solution to Problem A}
+
+Let \( n \in \mathbb{Z}^+ \) be the smallest positive integer such that \( x < 2^n \),and we can express \( x \) as:
+
+\[
+x = 2^{n-1} + y,
+\]
+
+where \( y \in \mathbb{N} \) and \( 0 \leq y < 2^{n-1} \). 
+
+If \( y \geq 2^{n-1} \), then we would have:
+
+\[
+x = 2^{n-1} + y \geq 2^{n-1} + 2^{n-1} = 2 \cdot 2^{n-1} = 2^n,
+\]
+
+which contradicts the definition that \( x < 2^n \). Therefore, we must have \( 0 \leq y < 2^{n-1} \).
+
+Given this, we can express the base-2 logarithm of \( x \) as:
+
+\[
+\lg x = \lg (2^{n-1} + y).
+\]
+
+Since \( 0 \leq y < 2^{n-1} \), it follows that:
+
+\[
+2^{n-1} \leq x < 2^n.
+\]
+
+Taking the base-2 logarithm of these inequalities gives:
+
+\[
+n - 1 \leq \lg x < n.
+\]
+
+Thus, \( \lg x \) is:
+
+\[
+\lfloor \lg x \rfloor = n - 1.
+\]
+
+So we can get:
+
+\[
+n = \lfloor \lg x \rfloor + 1.
+\]
+
+
+\subsubsection*{Solution to Problem B}
+
+The binary representation of a positive integer \( x \) can be thought of as a sum of powers of 2. The highest power of 2 in this sum corresponds to the most significant bit (MSB) in the binary representation.
+
+Given that:
+
+\[
+n = \lfloor \log_2 x \rfloor + 1,
+\]
+
+we have:
+
+\[
+2^{n-1} \leq x < 2^n.
+\]
+
+This inequality proves that \( x \) is greater than \( 2^{n-1} \) but less than \( 2^n \). Therefore, the highest power of 2 that is less than or equal to \( x \) is \( 2^{n-1} \).
+
+To represent \( x \) in binary, we need a bit for each power of 2 up to and including \( 2^{n-1} \). This means the binary representation of \( x \) requires at least \( n \) bits: one bit for each power of 2 from \( 2^0 \) up to \( 2^{n-1} \).
+
+\subsubsection*{Solution to Problem C}
+
+We can repeatedly divide \( x \) by 2 and record the remainders, and the binary representation is obtained by reading the remainders in reverse order.
+
+\subsection*{Pseudocode}
+
+\begin{verbatim}
+Algorithm: BinaryRepresentation(x)
+Input: x, a positive integer
+Output: Binary representation of x as a string
+
+1. Initialize an empty list `binary_digits`
+2. While x > 0:
+    a. Append x % 2 to `binary_digits` (remainder when x is divided by 2)
+    b. Update x to x // 2 (integer division by 2)
+3. Reverse the order of `binary_digits`
+4. Return `binary_digits` as a string by concatenating its elements
+\end{verbatim}
+
+\subsection*{Explanation of the Algorithm}
+
+\begin{itemize}
+    \item \textbf{Step 1} initializes an empty list to store the binary digits.
+    \item \textbf{Step 2} iteratively finds the remainder when \( x \) is divided by 2]. This remainder is appended to the list.
+    \item \textbf{Step 2(b)} updates \( x \) by dividing it by 2 (integer division), effectively shifting all bits to the right by one position.
+    \item The process repeats until \( x \) becomes 0.
+    \item \textbf{Step 3} reverses the list of binary digits because the least significant bit is computed first, and we need to read the binary number from the most significant bit.
+    \item \textbf{Step 4} converts the list of binary digits to a string for the final output.
+\end{itemize}
+
+\subsubsection*{Solution to Problem D} Please see attached binary_representation.cpp.
+
+\subsubsection*{Solution to Problem E} Please see attached binary_representation_recursive.cpp.
+
+\end{itemize}
+
+\end{document}
